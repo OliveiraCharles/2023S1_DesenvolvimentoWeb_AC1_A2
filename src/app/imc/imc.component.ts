@@ -12,6 +12,7 @@ export class ImcComponent {
   form: FormGroup;
   imc: number;
   classificacao: string;
+  bsClasse: String = '';
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -31,16 +32,22 @@ export class ImcComponent {
 
   getClassificacao(imc: number): string {
     if (imc < 18.5) {
+      this.bsClasse = 'alert alert-warning'
       return 'Magreza';
     } else if (imc < 25) {
+      this.bsClasse = 'alert alert-success'
       return 'Normal';
     } else if (imc < 30) {
+      this.bsClasse = 'alert alert-warning'
       return 'Sobrepeso';
     } else if (imc < 35) {
+      this.bsClasse = 'alert alert-danger'
       return 'Obesidade Grau I';
     } else if (imc < 40) {
+      this.bsClasse = 'alert alert-danger'
       return 'Obesidade Grau II (severa)';
     } else {
+      this.bsClasse = 'alert alert-danger'
       return 'Obesidade Grau III (mórbida)';
     }
   }

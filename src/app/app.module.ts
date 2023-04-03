@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ImcComponent } from './imc/imc.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Routes } from '@angular/router';
 import { ImcExplanationComponent } from './imc-explanation/imc-explanation.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './header/header.component';
