@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="form-control m-3">
+    <form [formGroup]="form" (ngSubmit)="calcularIMC()">
+      <div>
+        <label class="form-label" for="peso">Peso (em kg): </label>
+        <input
+          class="form-control"
+          type="number"
+          id="peso"
+          formControlName="peso"
+        />
+        <div
+          class="alert alert-danger m-3"
+          *ngIf="
+            form.get('peso').invalid &&
+            (form.get('peso').dirty || form.get('peso').touched)
+          "
+        >
+          <div *ngIf="form.get('peso').errors['required']">
+            Peso é obrigatório.
+          </div>
+          <div
+            *ngIf="
+              form.get('peso').errors['min'] || form.get('peso').errors['max']
+            "
+          >
+            O peso deve estar entre 1 e 500 kg.
+          </div>
+        </div>
+      </div>
+      <div>
+        <label class="form-label" for="altura">Altura (em metros): </label>
+        <input
+          class="form-control"
+          type="number"
+          id="altura"
+          formControlName="altura"
+        />
+        <div
+          class="alert alert-danger m-3"
+          *ngIf="
+            form.get('altura').invalid &&
+            (form.get('altura').dirty || form.get('altura').touched)
+          "
+        >
+          <div *ngIf="form.get('altura').errors['required']">
+            Altura é obrigatória.
+          </div>
+          <div
+            *ngIf="
+              form.get('altura').errors['min'] ||
+              form.get('altura').errors['max']
+            "
+          >
+            A altura deve estar entre 0,01 e 3 metros.
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary mt-3" type="submit" [disabled]="form.invalid" (click)="calcularIMC()">
+        Calcular IMC
+      </button>
+      <div class="alert alert-warning m-3" *ngIf="imc > 0">
+        <table>
+          <thead>
+            <tr>
+              <th>IMC</th>
+              <th>Classificação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ imc | number : "1.1-1" }}</td>
+              <td>{{ classificacao }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </form>
+  </div>
+</div>
